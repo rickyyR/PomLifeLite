@@ -1,0 +1,61 @@
+.root {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: BLACK;
+    -fx-border-width: 1,5;
+    -fx-background-color: linear-gradient(#c94c4c, #c32c2c);;
+    -fx-background-insets: 0;
+    -fx-font-family: Calibri;
+}
+
+.exitButton {
+    -fx-background-color: TRANSPARENT;
+    -fx-text-fill: #eea29a;
+}
+.exitButton:hover {
+    -fx-text-fill: BLACK;
+}
+
+.buttonPane {
+    -fx-spacing: 5;
+}
+
+.clock {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.2, 0.0, 3.0);
+    -fx-text-fill: #d0c9c0;
+    -fx-font-family: Calibri;
+}
+.titleText {
+  -fx-text-fill: BLACK;
+}
+
+.buttons {
+    -fx-font-family: Calibri;
+    -fx-background-color: linear-gradient(#ffffff,#d0c9c0);
+    -fx-border-color: BLACK;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1;
+    -fx-background-insets: 0;
+}
+.buttons:hover {
+    -fx-background-color: linear-gradient(#f2f2f2,#beb4a7);
+}
+.buttons:pressed {
+    -fx-background-color: linear-gradient(#ffffff,#d0c9c0);
+}
+
+.pomoTitleField {
+    -fx-border-color: BLACK;
+    -fx-background-color: linear-gradient(#34A853,#09821f);
+    -fx-border-radius: 5;
+    -fx-background-radius: 6;
+    -fx-prompt-text-fill: BLACK;
+    -fx-background-insets: 0;
+}
+.pomoTitleField:hover {
+    -fx-background-color: linear-gradient(#309c4d,#09771d);
+}
+
+
+

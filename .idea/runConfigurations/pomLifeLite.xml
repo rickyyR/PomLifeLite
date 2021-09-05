@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="pomLifeLite" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="org.rickyyr.pomlifelite.PomLifeLiteMain" />
+    <module name="pomLifeLite" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
