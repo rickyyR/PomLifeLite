@@ -8,10 +8,10 @@ import java.util.Locale;
 
 public class PomDiaryEntry {
 
-  private String entryTitle = "";
-  private String entryStartTime = "";
-  private String entryEndTime = "";
-  private String entryDate = "";
+  private String entryTitle = "Placeholder";
+  private String entryStartTime = "Placeholder";
+  private String entryEndTime = "Placeholder";
+  private String entryDate = "Placeholder";
   private DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
     .withLocale(Locale.getDefault())
     .withZone(ZoneId.systemDefault());

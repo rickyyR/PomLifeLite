@@ -3,33 +3,23 @@ package org.rickyyr.pomlifelite;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import javafx.util.Duration;
-
 import java.io.File;
 import java.io.IOException;
 
 
-public class PomLifeLiteController {
+public class PomLifeLiteTimerController {
   // FXML linked objects.
   @FXML
   protected Label pomCountDisplay;
@@ -42,15 +32,18 @@ public class PomLifeLiteController {
   @FXML
   protected Label clock = new Label();
   // Objects used in this Controller class.
+
+
   private Media notificationSound = new Media(new File("src/main/resources/org/rickyyr/pomlifelite/pauseBell.wav").toURI().toString());
   private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private PomTimer pomTimer = new PomTimer();
+  // Objects for handling the Diary scene
   private final double[] xOffset = new double[1];
   private final double[] yOffset = new double[1];
-  // Objects for handling the Diary scene
   private Stage stage;
   private Scene scene;
   private Parent root;
+  // method to make the diary moveable after swtiching scenes.
   private void setupScene(Scene scene, double[] xOffset, double[] yOffset) {
     scene.setFill(Color.TRANSPARENT);
     scene.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -68,16 +61,6 @@ public class PomLifeLiteController {
       }
     });
   }
-  // Method to switch from Diary to Timer Scene.
-  @FXML
-  public void switchToTimer(ActionEvent event) throws IOException {
-    root = FXMLLoader.load(getClass().getResource(("pomLifeLite_fxml.fxml")));
-    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
-    this.setupScene(this.scene, this.xOffset, this.yOffset);
-    stage.setScene(scene);
-    stage.show();
-  }
   // Method to switch from Timer to Diary Scene.
   @FXML
   public void switchToDiary() throws IOException {
@@ -89,7 +72,7 @@ public class PomLifeLiteController {
     stage.show();
   }
   // Constructor.
-  public PomLifeLiteController() {
+  public PomLifeLiteTimerController() {
     this.pauseTimer.setCycleCount(Animation.INDEFINITE);
     this.runTimer.setCycleCount(Animation.INDEFINITE);
     this.notificationPlayer.setOnEndOfMedia(new Runnable() {

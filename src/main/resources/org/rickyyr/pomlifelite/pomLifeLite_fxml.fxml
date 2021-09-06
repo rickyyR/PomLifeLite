@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="226.0" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="226.0" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteTimerController">
    <left>
       <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="52.0" styleClass="buttonPane" BorderPane.alignment="CENTER">
          <children>

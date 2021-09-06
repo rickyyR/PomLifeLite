@@ -14,6 +14,9 @@ public class PomDiary {
     return this.diary.get(entryNumber);
   }
 
+  public ArrayList<PomDiaryEntry> getDiary() {
+    return this.diary;
+  }
   public int getEntryCount() {
     return this.diary.size();
   }
