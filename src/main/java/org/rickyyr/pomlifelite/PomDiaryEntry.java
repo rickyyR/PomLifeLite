@@ -16,6 +16,13 @@ public class PomDiaryEntry {
     .withLocale(Locale.getDefault())
     .withZone(ZoneId.systemDefault());
 
+  public PomDiaryEntry() {
+  }
+
+  public PomDiaryEntry(String entryTitle) {
+    this.entryTitle = entryTitle;
+  }
+
   public void setEntryTitle(String entryTitle) {
     this.entryTitle = entryTitle;
   }
