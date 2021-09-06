@@ -18,12 +18,21 @@
       </Label>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="180.0" text="Names">
+          <TableColumn prefWidth="113.0" text="Name">
               <cellValueFactory>
                   <PropertyValueFactory property="entryTitle" />
               </cellValueFactory>
           </TableColumn>
-          <TableColumn editable="false" prefWidth="178.0" />
+            <TableColumn prefWidth="127.0" text="Date">
+                <cellValueFactory>
+                    <PropertyValueFactory property="entryDate" />
+                </cellValueFactory>
+            </TableColumn>
+          <TableColumn editable="false" prefWidth="118.0" text="Time">
+              <cellValueFactory>
+                  <PropertyValueFactory property="startAndEndTime"/>
+              </cellValueFactory>
+          </TableColumn>
         </columns>
       </TableView>
       <Button fx:id="backToTimerButton" mnemonicParsing="false" onAction="#switchToTimer" prefHeight="37.0" prefWidth="134.0" styleClass="buttons" text="Timer" />

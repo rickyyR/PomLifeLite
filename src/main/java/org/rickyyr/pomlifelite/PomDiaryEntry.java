@@ -12,17 +12,19 @@ public class PomDiaryEntry {
 
   private String entryTitle = "Placeholder";
   private String entryStartTime = "Placeholder";
-  private String entryEndTime = "Placeholder";
+  private String entryEndTime = "";
   private String entryDate = "Placeholder";
   private DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
     .withLocale(Locale.getDefault())
     .withZone(ZoneId.systemDefault());
 
   public PomDiaryEntry() {
+    this.setDateAndStartTime();
   }
 
   public PomDiaryEntry(String entryTitle) {
     this.entryTitle = entryTitle;
+    this.setDateAndStartTime();
   }
 
   public void setEntryTitle(String entryTitle) {
@@ -41,6 +43,9 @@ public class PomDiaryEntry {
     String[] splitted = currentDateAndTime.split(",");
     this.entryEndTime = splitted[1].replaceAll("\\s+", "");
   }
+
+  public String getStartAndEndTime() {
+    return this.entryStartTime + " - " + this.entryEndTime; }
   public String getEntryTitle() {
     return this.entryTitle;
   }

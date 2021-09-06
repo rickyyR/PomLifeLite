@@ -38,11 +38,7 @@ public class PomLifeLiteDiaryController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    System.out.println("Initializing...");
-    this.tableView.getItems().add(new PomDiaryEntry("Sexxxer"));
-    this.tableView.getItems().add(new PomDiaryEntry("Sexxxer123"));
-    this.tableView.getItems().add(new PomDiaryEntry("Sexxxer23"));
-    this.tableView.getItems().add(new PomDiaryEntry("Sexxxer424"));
+
   }
 
 
