@@ -16,7 +16,15 @@ import java.util.Timer;
 
 public class PomLifeLiteMain extends Application {
   public static void main(String[] args) {
-    launch();
+    PomDiaryEntry pomDiaryEntry = new PomDiaryEntry();
+    pomDiaryEntry.setEntryTitle("Sexer Entry");
+    pomDiaryEntry.setDateAndStartTime();
+    pomDiaryEntry.setEntryEndTime();
+    System.out.println(pomDiaryEntry.getEntryTitle());
+    System.out.println(pomDiaryEntry.getEntryDate());
+    System.out.println("Start " + pomDiaryEntry.getEntryStartTime());
+    System.out.println("End " + pomDiaryEntry.getEntryEndTime());
+    //launch();
   }
 
   @Override
