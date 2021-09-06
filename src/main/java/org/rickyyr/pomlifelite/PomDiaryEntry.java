@@ -1,5 +1,7 @@
 package org.rickyyr.pomlifelite;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -42,7 +44,6 @@ public class PomDiaryEntry {
   public String getEntryTitle() {
     return this.entryTitle;
   }
-
   public String getEntryStartTime() {
     return this.entryStartTime;
   }
@@ -52,5 +53,6 @@ public class PomDiaryEntry {
   public String getEntryEndTime() {
     return this.entryEndTime;
   }
+
 
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -17,8 +18,12 @@
       </Label>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="180.0" text="Session Name" />
-          <TableColumn prefWidth="178.0" text="Session Time" />
+          <TableColumn prefWidth="180.0" text="Names">
+              <cellValueFactory>
+                  <PropertyValueFactory property="entryTitle" />
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn editable="false" prefWidth="178.0" />
         </columns>
       </TableView>
       <Button fx:id="backToTimerButton" mnemonicParsing="false" onAction="#switchToTimer" prefHeight="37.0" prefWidth="134.0" styleClass="buttons" text="Timer" />

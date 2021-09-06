@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,23 +18,23 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class PomLifeLiteTimerController {
+public class PomLifeLiteTimerController implements Initializable {
   // FXML linked objects.
   @FXML
   protected Label pomCountDisplay;
   @FXML
-  protected TextField pomTitleField = new TextField();
+  protected TextField pomTitleField;
   @FXML
-  protected Button startPauseButton = new Button();
+  protected Button startPauseButton;
   @FXML
-  protected Button diaryStopButton = new Button();
+  protected Button diaryStopButton;
   @FXML
-  protected Label clock = new Label();
+  protected Label clock;
   // Objects used in this Controller class.
-
-
   private Media notificationSound = new Media(new File("src/main/resources/org/rickyyr/pomlifelite/pauseBell.wav").toURI().toString());
   private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private PomTimer pomTimer = new PomTimer();
@@ -71,17 +72,18 @@ public class PomLifeLiteTimerController {
     stage.setScene(scene);
     stage.show();
   }
-  // Constructor.
-  public PomLifeLiteTimerController() {
+  // Initialize
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
     this.pauseTimer.setCycleCount(Animation.INDEFINITE);
     this.runTimer.setCycleCount(Animation.INDEFINITE);
     this.notificationPlayer.setOnEndOfMedia(new Runnable() {
       @Override
       public void run() {
-          getNotificationPlayer().stop();
-        }
+        getNotificationPlayer().stop();
+      }
     });
-  } // << close Constructor
+  }
   // The main functionality method to run a COUNTDOWN.
   private Timeline runTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
       this.pomTimer.countDown();
