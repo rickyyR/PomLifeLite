@@ -1,5 +1,8 @@
 package org.rickyyr.pomlifelite;
 
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,19 +12,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PomLifeLiteDiaryController implements Initializable {
 
+  private ObjectIOHelper objectIOHelper = new ObjectIOHelper("pomDiary.json");
+  private ObservableList<PomDiaryEntry> observableList;
   @FXML
   protected Button backToTimerButton;
   @FXML
@@ -34,11 +36,13 @@ public class PomLifeLiteDiaryController implements Initializable {
   private Parent root;
 
   public PomLifeLiteDiaryController() {
+
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
+    this.observableList =  FXCollections.observableArrayList(this.objectIOHelper.getFileContentsAsList(PomDiaryEntry[].class));
+    this.tableView.setItems(this.observableList);
   }
 
 
@@ -62,8 +66,12 @@ public class PomLifeLiteDiaryController implements Initializable {
   }
   // Method to switch from Diary to Timer Scene.
   @FXML
-  public void switchToTimer(ActionEvent event) throws IOException {
-    this.root = FXMLLoader.load(getClass().getResource(("pomLifeLite_fxml.fxml")));
+  public void switchToTimer(ActionEvent event)  {
+    try {
+      this.root = FXMLLoader.load(getClass().getResource(("pomLifeLite_fxml.fxml")));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     this.scene = new Scene(root);
     this.setupScene(this.scene, this.xOffset, this.yOffset);

@@ -28,7 +28,7 @@
                     <PropertyValueFactory property="entryDate" />
                 </cellValueFactory>
             </TableColumn>
-          <TableColumn editable="false" prefWidth="118.0" text="Time">
+          <TableColumn editable="false" prefWidth="118.0" text="Start-End">
               <cellValueFactory>
                   <PropertyValueFactory property="startAndEndTime"/>
               </cellValueFactory>

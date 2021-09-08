@@ -16,13 +16,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.beans.XMLDecoder;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.beans.XMLEncoder;
+
 
 
 public class PomLifeLiteTimerController implements Initializable {
@@ -38,12 +35,8 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected Label clock;
   // Objects used in this Controller class.
-
-  private FileInputStream pomDiaryInputStream = new FileInputStream("pomDiary.xml");
-  private XMLDecoder xmlDecoder = new XMLDecoder(pomDiaryInputStream);
-  private ArrayList<PomDiaryEntry> pomDiary = (ArrayList) xmlDecoder.readObject();
-  private FileOutputStream pomDiaryOutputStream = new FileOutputStream("pomDiary.xml");
-  private XMLEncoder xmlEncoder = new XMLEncoder(pomDiaryOutputStream);
+  private ObjectIOHelper objectIOHelper = new ObjectIOHelper("pomDiary.json");
+  private PomDiaryEntry currentEntry;
   private Media notificationSound = new Media(new File("src/main/resources/org/rickyyr/pomlifelite/pauseBell.wav").toURI().toString());
   private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private PomTimer pomTimer = new PomTimer();
@@ -54,8 +47,9 @@ public class PomLifeLiteTimerController implements Initializable {
   private Scene scene;
   private Parent root;
 
-  public PomLifeLiteTimerController() throws FileNotFoundException {
+  public PomLifeLiteTimerController() throws IOException {
   }
+
 
   // method to make the diary moveable after swtiching scenes.
   private void setupScene(Scene scene, double[] xOffset, double[] yOffset) {
@@ -132,7 +126,10 @@ public class PomLifeLiteTimerController implements Initializable {
   // Button functionality methods
   @FXML
   protected void startTimer() throws IOException {
-    this.pomDiary.add(new PomDiaryEntry(this.pomTitleField.getText()));
+    if(this.pomTitleField.getText().equals("")) {
+      this.pomTitleField.setText("Pom Session");
+    }
+    this.currentEntry = new PomDiaryEntry(this.pomTitleField.getText());
     this.pomTimer.setON();
     this.runTimer.play();
     this.startPauseButton.setText("⏸");
@@ -156,13 +153,15 @@ public class PomLifeLiteTimerController implements Initializable {
   }
   @FXML
   protected void stopTimer() {
-    this.pomDiary.get((this.pomDiary.size() - 1)).setEntryEndTime();
-    this.xmlEncoder.writeObject(this.pomDiary);
+    this.currentEntry.setEntryEndTime();
+    this.objectIOHelper.writeObjectToFile(this.currentEntry);
+    this.currentEntry = null;
     this.runTimer.stop();
     this.pomTimer.setOFF();
     this.pomTimer.resetTimer();
     this.pomTimer.resetPomCount();
     this.clock.setText(this.pomTimer.getRemaining());
+    this.pomTitleField.setText("");
     this.pomCountDisplay.setText(this.pomTimer.pomCountTostring());
     this.diaryStopButton.setText("Diary");
     this.diaryStopButton.setOnAction(action -> {
@@ -188,10 +187,6 @@ public class PomLifeLiteTimerController implements Initializable {
   // Exit method for the custom X button
   @FXML
   protected void stopProgramm() throws IOException {
-    this.xmlDecoder.close();
-    this.xmlEncoder.close();
-    this.pomDiaryInputStream.close();
-    this.pomDiaryOutputStream.close();
     System.exit(0);
   }
 

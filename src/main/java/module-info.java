@@ -4,8 +4,9 @@ module org.rickyyr.pomlifelite {
   requires javafx.graphics;
   requires javafx.media;
   requires java.desktop;
+  requires com.google.gson;
 
 
-  opens org.rickyyr.pomlifelite to javafx.fxml;
+  opens org.rickyyr.pomlifelite to javafx.fxml, com.google.gson, javafx.base;
   exports org.rickyyr.pomlifelite;
 }

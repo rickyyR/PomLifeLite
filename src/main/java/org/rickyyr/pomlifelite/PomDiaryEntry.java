@@ -1,20 +1,19 @@
 package org.rickyyr.pomlifelite;
 
-import javafx.beans.property.SimpleStringProperty;
-
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
-public class PomDiaryEntry {
+public class PomDiaryEntry implements Serializable {
 
   private String entryTitle = "Placeholder";
+  private String entryDate = "Placeholder";
   private String entryStartTime = "Placeholder";
   private String entryEndTime = "";
-  private String entryDate = "Placeholder";
-  private DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+  private transient DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
     .withLocale(Locale.getDefault())
     .withZone(ZoneId.systemDefault());
 
@@ -27,37 +26,53 @@ public class PomDiaryEntry {
     this.setDateAndStartTime();
   }
 
+
+  // Getters and Setters:
   public void setEntryTitle(String entryTitle) {
     this.entryTitle = entryTitle;
   }
-
+  public String getEntryTitle() {
+    return this.entryTitle;
+  }
+  public void setEntryDate() {
+    String currentDateAndTime = formatter.format(Instant.now());
+    String[] splitted = currentDateAndTime.split(",");
+    this.entryDate = splitted[0].replaceAll("\\s+", "");
+  }
+  public String getEntryDate() {
+    return this.entryDate;
+  }
+  public void setEntryStartTime() {
+    String currentDateAndTime = formatter.format(Instant.now());
+    String[] splitted = currentDateAndTime.split(",");
+    this.entryStartTime = splitted[1].replaceAll("\\s+", "");
+  }
+  public String getEntryStartTime() {
+    return this.entryStartTime;
+  }
+  public void setEntryEndTime() {
+    String currentDateAndTime = formatter.format(Instant.now());
+    String[] splitted = currentDateAndTime.split(",");
+    this.entryEndTime = splitted[1].replaceAll("\\s+", "");
+  }
+  public String getEntryEndTime() {
+    return this.entryEndTime;
+  }
   public void setDateAndStartTime() {
     String currentDateAndTime = formatter.format(Instant.now());
     String[] splitted = currentDateAndTime.split(",");
     this.entryDate = splitted[0].replaceAll("\\s+", "");
     this.entryStartTime = splitted[1].replaceAll("\\s+", "");
   }
-
-  public void setEntryEndTime() {
-    String currentDateAndTime = formatter.format(Instant.now());
-    String[] splitted = currentDateAndTime.split(",");
-    this.entryEndTime = splitted[1].replaceAll("\\s+", "");
-  }
-
   public String getStartAndEndTime() {
     return this.entryStartTime + " - " + this.entryEndTime; }
-  public String getEntryTitle() {
-    return this.entryTitle;
+  public DateTimeFormatter getFormatter() {
+    return this.formatter;
   }
-  public String getEntryStartTime() {
-    return this.entryStartTime;
-  }
-  public String getEntryDate() {
-    return this.entryDate;
-  }
-  public String getEntryEndTime() {
-    return this.entryEndTime;
-  }
+
+
+
+
 
 
 }
