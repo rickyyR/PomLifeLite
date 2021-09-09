@@ -22,10 +22,12 @@ import java.util.ResourceBundle;
 
 public class PomLifeLiteDiaryController implements Initializable {
 
-  private ObjectIOHelper objectIOHelper = new ObjectIOHelper("pomDiary.json");
+  private JsonListHelper jsonListHelper = new JsonListHelper("pomDiary.json", PomDiaryEntry.class);
   private ObservableList<PomDiaryEntry> observableList;
   @FXML
   protected Button backToTimerButton;
+  @FXML
+  protected Button deleteButton;
   @FXML
   protected TableView<PomDiaryEntry> tableView;
   // Objects for handling the Diary scene
@@ -41,7 +43,7 @@ public class PomLifeLiteDiaryController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.observableList =  FXCollections.observableArrayList(this.objectIOHelper.getFileContentsAsList(PomDiaryEntry[].class));
+    this.observableList =  FXCollections.observableArrayList(this.jsonListHelper.getListFromFile(PomDiaryEntry[].class));
     this.tableView.setItems(this.observableList);
   }
 
@@ -77,6 +79,12 @@ public class PomLifeLiteDiaryController implements Initializable {
     this.setupScene(this.scene, this.xOffset, this.yOffset);
     this.stage.setScene(scene);
     this.stage.show();
+  }
+
+  @FXML
+  public void deleteEntry() {
+    this.observableList.remove(this.tableView.getSelectionModel().getSelectedItem());
+    this.jsonListHelper.replaceListInFile(this.observableList);
   }
 
 

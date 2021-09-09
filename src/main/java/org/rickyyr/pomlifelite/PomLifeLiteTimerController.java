@@ -35,7 +35,7 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected Label clock;
   // Objects used in this Controller class.
-  private ObjectIOHelper objectIOHelper = new ObjectIOHelper("pomDiary.json");
+  private JsonListHelper jsonListHelper = new JsonListHelper("pomDiary.json", PomDiaryEntry.class);
   private PomDiaryEntry currentEntry;
   private Media notificationSound = new Media(new File("src/main/resources/org/rickyyr/pomlifelite/pauseBell.wav").toURI().toString());
   private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
@@ -154,7 +154,7 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected void stopTimer() {
     this.currentEntry.setEntryEndTime();
-    this.objectIOHelper.writeObjectToFile(this.currentEntry);
+    this.jsonListHelper.addObjectToList(this.currentEntry);
     this.currentEntry = null;
     this.runTimer.stop();
     this.pomTimer.setOFF();
