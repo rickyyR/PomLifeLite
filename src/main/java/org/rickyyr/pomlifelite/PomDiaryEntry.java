@@ -13,7 +13,7 @@ public class PomDiaryEntry implements Serializable {
   private String entryDate = "Placeholder";
   private String entryStartTime = "Placeholder";
   private String entryEndTime = "";
-  private transient DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+  private final transient DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
     .withLocale(Locale.getDefault())
     .withZone(ZoneId.systemDefault());
 
@@ -25,8 +25,6 @@ public class PomDiaryEntry implements Serializable {
     this.entryTitle = entryTitle;
     this.setDateAndStartTime();
   }
-
-
   // Getters and Setters:
   public void setEntryTitle(String entryTitle) {
     this.entryTitle = entryTitle;

@@ -1,6 +1,5 @@
 package org.rickyyr.pomlifelite;
 
-
 public class PomTimer {
 
   private int pomCount = 1;
@@ -61,9 +60,8 @@ public class PomTimer {
       this.pauseSeconds --;
     }
   }
-
-
-  public String pomCountTostring() { return "Pom: " +  String.valueOf(this.pomCount); }
+  // Getter methods
+  public String pomCountTostring() { return "Pom: " +  this.pomCount; }
   public String getRemaining() {
     return String.format("%02d", this.minutes) + ":" + String.format("%02d", this.seconds);
   }
@@ -77,6 +75,5 @@ public class PomTimer {
       return String.valueOf(this.seconds);
   }
   public boolean getIsRunning() { return  this.isRunning; }
-
 } // class
 

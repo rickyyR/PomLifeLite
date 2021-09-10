@@ -1,35 +1,31 @@
 package org.rickyyr.pomlifelite;
 
 import com.google.gson.Gson;
-
-
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-
 import java.util.Arrays;
 import java.util.List;
 
-
 public class JsonListHelper <T> {
 
-  private String filePath;
-  private Gson gson = new Gson();
+  private final String filePath;
+  private final Gson gson = new Gson();
   private FileWriter fileWriter;
   private FileReader fileReader;
   private List<T> jsonList;
-  private Type objectType;
 
   // Constructor
-  public JsonListHelper(String filePath, Type objectType) {
+  public JsonListHelper(String filePath) {
     this.filePath = filePath;
-    this.objectType = objectType;
   }
   // Read List from file into the jsonList variable
   private void readListFromFile() {
     try {
       this.fileReader = new FileReader(this.filePath);
       this.jsonList = this.gson.fromJson(this.fileReader, List.class);
+      if(this.jsonList == null) {
+        this.jsonList = new ArrayList<>();
+      }
       this.fileReader.close();
     } catch (FileNotFoundException e) {
       this.jsonList = new ArrayList<>();
@@ -37,7 +33,7 @@ public class JsonListHelper <T> {
         this.fileWriter = new FileWriter(this.filePath);
         this.gson.toJson(this.jsonList);
         this.fileWriter.close();
-        System.out.println("Could not find Diary file! Created empty pomDiary.json.");
+        System.out.println("Could not find Diary file! Created empty pomDiary.json."); // TODO remove
       } catch (IOException ex) {
         ex.printStackTrace();
       }
@@ -69,14 +65,19 @@ public class JsonListHelper <T> {
     this.jsonList = newList;
     this.writeListToFile();
   }
-  // Read list from file and return it for further actions
+  // This is for creating a observable list that does not bug with tableview rows.
   public <X> List<X> getListFromFile(Class<X[]> objectClass) {
     try {
       this.fileReader = new FileReader(this.filePath);
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      return new ArrayList<>();
     }
     X[] arr = new Gson().fromJson(this.fileReader, objectClass);
+    try {
+      this.fileReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     return Arrays.asList(arr);
   }
 

@@ -3,14 +3,12 @@ package org.rickyyr.pomlifelite;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -20,8 +18,6 @@ import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 
 public class PomLifeLiteTimerController implements Initializable {
   // FXML linked objects.
@@ -36,47 +32,37 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected Label clock;
   // Objects used in this Controller class.
-  private JsonListHelper jsonListHelper = new JsonListHelper("pomDiary.json", PomDiaryEntry.class);
+  private final JsonListHelper<PomDiaryEntry> jsonListHelper = new JsonListHelper<>("pomDiary.json");
   private PomDiaryEntry currentEntry;
-  private Media notificationSound = new Media(getClass().getResource("pauseBell.wav").toURI().toString());
-  private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
-  private PomTimer pomTimer = new PomTimer();
+  private final Media notificationSound = new Media(getClass().getResource("pauseBell.wav").toURI().toString());
+  private final MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
+  private final PomTimer pomTimer = new PomTimer();
   // Objects for handling the Diary scene
   private final double[] xOffset = new double[1];
   private final double[] yOffset = new double[1];
   private Stage stage;
-  private Scene scene;
-  private Parent root;
 
-  public PomLifeLiteTimerController() throws IOException, URISyntaxException {
+  public PomLifeLiteTimerController() throws URISyntaxException {
   }
-
-
   // method to make the diary moveable after swtiching scenes.
   private void setupScene(Scene scene, double[] xOffset, double[] yOffset) {
     scene.setFill(Color.TRANSPARENT);
-    scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        xOffset[0] = event.getSceneX();
-        yOffset[0] = event.getSceneY();
-      }
+    scene.setOnMousePressed(event -> {
+      xOffset[0] = event.getSceneX();
+      yOffset[0] = event.getSceneY();
     });
-    scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        stage.setX(event.getScreenX() - xOffset[0]);
-        stage.setY(event.getScreenY() - yOffset[0]);
-      }
+    scene.setOnMouseDragged(event -> {
+      stage.setX(event.getScreenX() - xOffset[0]);
+      stage.setY(event.getScreenY() - yOffset[0]);
     });
   }
   // Method to switch from Timer to Diary Scene.
   @FXML
   public void switchToDiary() throws IOException {
-    root = FXMLLoader.load(getClass().getResource(("pomLifeLiteDiary_fxml.fxml")));
+    Parent root = FXMLLoader.load(getClass().getResource(("pomLifeLiteDiary_fxml.fxml")));
     stage = (Stage) this.diaryStopButton.getScene().getWindow();
-    scene = new Scene(root);
-    this.setupScene(this.scene, this.xOffset, this.yOffset);
+    Scene scene = new Scene(root);
+    this.setupScene(scene, this.xOffset, this.yOffset);
     stage.setScene(scene);
     stage.show();
   }
@@ -85,18 +71,13 @@ public class PomLifeLiteTimerController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     this.pauseTimer.setCycleCount(Animation.INDEFINITE);
     this.runTimer.setCycleCount(Animation.INDEFINITE);
-    this.notificationPlayer.setOnEndOfMedia(new Runnable() {
-      @Override
-      public void run() {
-        getNotificationPlayer().stop();
-      }
-    });
+    this.notificationPlayer.setOnEndOfMedia(() -> getNotificationPlayer().stop());
   }
   // The main functionality method to run a COUNTDOWN.
-  private Timeline runTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
+  private final Timeline runTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
       this.pomTimer.countDown();
       this.clock.setText(this.pomTimer.getRemaining());
-      if(this.pomTimer.getIsRunning() == false) {
+      if(!this.pomTimer.getIsRunning()) {
         this.notificationPlayer.play();
         this.clock.setText(this.pomTimer.getRemainingPauseTime());
         this.pomCountDisplay.setText("PAUSE");
@@ -106,10 +87,10 @@ public class PomLifeLiteTimerController implements Initializable {
       }
   }));
   // The main functionality method to run a PAUSE.
-  private Timeline pauseTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
+  private final Timeline pauseTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
     this.pomTimer.runPause();
     this.clock.setText(this.pomTimer.getRemainingPauseTime());
-    if(pomTimer.getIsRunning() == false) {
+    if(!pomTimer.getIsRunning()) {
       this.notificationPlayer.play();
       this.clock.setText(this.pomTimer.getRemaining());
       this.pomCountDisplay.setText(this.pomTimer.pomCountTostring());
@@ -187,7 +168,7 @@ public class PomLifeLiteTimerController implements Initializable {
   }
   // Exit method for the custom X button
   @FXML
-  protected void stopProgramm() throws IOException {
+  protected void stopProgramm() {
     System.exit(0);
   }
 
