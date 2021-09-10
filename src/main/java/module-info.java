@@ -7,6 +7,6 @@ module org.rickyyr.pomlifelite {
   requires com.google.gson;
 
 
-  opens org.rickyyr.pomlifelite to javafx.fxml, com.google.gson, javafx.base;
+  opens org.rickyyr.pomlifelite to javafx.fxml, com.google.gson;
   exports org.rickyyr.pomlifelite;
 }

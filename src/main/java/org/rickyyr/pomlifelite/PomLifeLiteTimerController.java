@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,9 +36,9 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected Label clock;
   // Objects used in this Controller class.
-  private ObjectIOHelper objectIOHelper = new ObjectIOHelper("pomDiary.json");
+  private JsonListHelper jsonListHelper = new JsonListHelper("pomDiary.json", PomDiaryEntry.class);
   private PomDiaryEntry currentEntry;
-  private Media notificationSound = new Media(new File("src/main/resources/org/rickyyr/pomlifelite/pauseBell.wav").toURI().toString());
+  private Media notificationSound = new Media(getClass().getResource("pauseBell.wav").toURI().toString());
   private MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private PomTimer pomTimer = new PomTimer();
   // Objects for handling the Diary scene
@@ -47,7 +48,7 @@ public class PomLifeLiteTimerController implements Initializable {
   private Scene scene;
   private Parent root;
 
-  public PomLifeLiteTimerController() throws IOException {
+  public PomLifeLiteTimerController() throws IOException, URISyntaxException {
   }
 
 
@@ -154,7 +155,7 @@ public class PomLifeLiteTimerController implements Initializable {
   @FXML
   protected void stopTimer() {
     this.currentEntry.setEntryEndTime();
-    this.objectIOHelper.writeObjectToFile(this.currentEntry);
+    this.jsonListHelper.addObjectToList(this.currentEntry);
     this.currentEntry = null;
     this.runTimer.stop();
     this.pomTimer.setOFF();

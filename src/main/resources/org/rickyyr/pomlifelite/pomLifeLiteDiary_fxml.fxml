@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="361.0" style="-fx-spacing: 40px;" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteDiaryController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="361.0" style="-fx-spacing: 40px;" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteDiaryController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="160.0" styleClass="titleText" text="DIARY">
          <font>
@@ -30,11 +30,12 @@
             </TableColumn>
           <TableColumn editable="false" prefWidth="118.0" text="Start-End">
               <cellValueFactory>
-                  <PropertyValueFactory property="startAndEndTime"/>
+                  <PropertyValueFactory property="startAndEndTime" />
               </cellValueFactory>
           </TableColumn>
         </columns>
       </TableView>
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" />
       <Button fx:id="backToTimerButton" mnemonicParsing="false" onAction="#switchToTimer" prefHeight="37.0" prefWidth="134.0" styleClass="buttons" text="Timer" />
    </children>
    <opaqueInsets>
