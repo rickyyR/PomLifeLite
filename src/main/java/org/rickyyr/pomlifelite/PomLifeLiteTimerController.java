@@ -169,6 +169,12 @@ public class PomLifeLiteTimerController implements Initializable {
   // Exit method for the custom X button
   @FXML
   protected void stopProgramm() {
+    if(this.currentEntry != null) {
+      this.currentEntry.setEntryEndTime();
+      this.jsonListHelper.addObjectToList(this.currentEntry);
+      this.currentEntry = null;
+      this.runTimer.stop();
+    }
     System.exit(0);
   }
 

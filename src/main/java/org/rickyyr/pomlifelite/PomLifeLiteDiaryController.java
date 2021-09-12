@@ -69,4 +69,6 @@ public class PomLifeLiteDiaryController implements Initializable {
     this.observableList.remove(this.tableView.getSelectionModel().getSelectedItem());
     this.jsonListHelper.replaceListInFile(this.observableList);
   }
+  @FXML
+  protected void stopProgramm() {System.exit(0);}
 }

@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="pomLifeLite" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="C:\Users\Willma\.jdks\adopt-openjdk-1.8.0_302\jre" />
     <option name="MAIN_CLASS_NAME" value="org.rickyyr.pomlifelite.PomLifeLiteMain" />
     <module name="pomLifeLite" />
     <method v="2">

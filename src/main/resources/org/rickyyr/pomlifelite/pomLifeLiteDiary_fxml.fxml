@@ -6,39 +6,68 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="361.0" style="-fx-spacing: 40px;" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteDiaryController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="261.0" style="-fx-spacing: 5px;" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteDiaryController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="160.0" styleClass="titleText" text="DIARY">
-         <font>
-            <Font name="Berlin Sans FB" size="47.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="196.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="92.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Diary" textOverrun="CLIP">
+               <font>
+                  <Font name="Berlin Sans FB" size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="120.0" />
+               </HBox.margin>
+            </Label>
+            <Button contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#stopProgramm" prefHeight="22.0" prefWidth="28.0" styleClass="exitButton" stylesheets="@csspommi.css" text="✖">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" prefHeight="344.0" prefWidth="239.0" style="-fx-border-color: BLACK;" stylesheets="@csspommi.css">
         <columns>
-          <TableColumn prefWidth="113.0" text="Name">
+          <TableColumn prefWidth="91.0" text="Name">
               <cellValueFactory>
                   <PropertyValueFactory property="entryTitle" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="127.0" text="Date">
+            <TableColumn minWidth="0.0" prefWidth="60.0" text="Date">
                 <cellValueFactory>
                     <PropertyValueFactory property="entryDate" />
                 </cellValueFactory>
             </TableColumn>
-          <TableColumn editable="false" prefWidth="118.0" text="Start-End">
+          <TableColumn editable="false" prefWidth="77.0" text="Start - End">
               <cellValueFactory>
                   <PropertyValueFactory property="startAndEndTime" />
               </cellValueFactory>
           </TableColumn>
         </columns>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
       </TableView>
-      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" />
-      <Button fx:id="backToTimerButton" mnemonicParsing="false" onAction="#switchToTimer" prefHeight="37.0" prefWidth="134.0" styleClass="buttons" text="Timer" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+         <children>
+            <Button fx:id="backToTimerButton" mnemonicParsing="false" onAction="#switchToTimer" prefHeight="24.0" prefWidth="81.0" styleClass="buttons" stylesheets="@csspommi.css" text="Timer" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteEntry" prefHeight="24.0" prefWidth="81.0" styleClass="buttons" stylesheets="@csspommi.css" text="Delete Entry" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+   </padding>
 </VBox>
