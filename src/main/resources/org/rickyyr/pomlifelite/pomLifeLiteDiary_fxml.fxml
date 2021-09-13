@@ -12,9 +12,9 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="252.0" style="-fx-spacing: 5px;" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteDiaryController">
    <children>
-      <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="196.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="12.0" prefWidth="236.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="98.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Diary" textOverrun="CLIP">
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="98.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Diary" textOverrun="CLIP">
                <font>
                   <Font name="Berlin Sans FB" size="20.0" />
                </font>
