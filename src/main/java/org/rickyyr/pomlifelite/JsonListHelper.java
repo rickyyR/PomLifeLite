@@ -18,7 +18,7 @@ public class JsonListHelper <T> {
   public JsonListHelper(String filePath) {
     this.filePath = filePath;
   }
-  // Read List from file into the jsonList variable
+  // Read a list from a file into the jsonList variable.
   private void readListFromFile() {
     try {
       this.fileReader = new FileReader(this.filePath);
@@ -41,7 +41,7 @@ public class JsonListHelper <T> {
       e.printStackTrace();
     }
   }
-  // Write the list inside the jsonList variable to File (Replacing old file!)
+  // Write the list inside the jsonList variable to a file (Replacing old file!).
   private void writeListToFile() {
     try {
       this.fileWriter = new FileWriter(this.filePath);
@@ -51,7 +51,7 @@ public class JsonListHelper <T> {
       e.printStackTrace();
     }
   }
-  // Read a existing list from a file, add a Object to it and save the file
+  // Read a existing list from a file, add a object to it and save the file.
   public void addObjectToList(T object) {
     this.readListFromFile();
     if(this.jsonList == null)  {
@@ -60,7 +60,7 @@ public class JsonListHelper <T> {
     this.jsonList.add(object);
     this.writeListToFile();
   }
-  // Replace the List in File with a List given in parameter
+  // Replace the list in a file with a list given as parameter.
   public void replaceListInFile(List<T> newList ) {
     this.jsonList = newList;
     this.writeListToFile();

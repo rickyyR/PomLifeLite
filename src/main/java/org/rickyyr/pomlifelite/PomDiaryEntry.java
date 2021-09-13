@@ -25,7 +25,7 @@ public class PomDiaryEntry implements Serializable {
     this.entryTitle = entryTitle;
     this.setDateAndStartTime();
   }
-  // Getters and Setters:
+  // Getters and Setters.
   public void setEntryTitle(String entryTitle) {
     this.entryTitle = entryTitle;
   }

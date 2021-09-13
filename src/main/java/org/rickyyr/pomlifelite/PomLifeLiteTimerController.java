@@ -37,7 +37,7 @@ public class PomLifeLiteTimerController implements Initializable {
   private final Media notificationSound = new Media(getClass().getResource("pauseBell.wav").toURI().toString());
   private final MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private final PomTimer pomTimer = new PomTimer();
-  // Objects for handling the Diary scene
+  // Objects for handling the Diary scene.
   private final double[] xOffset = new double[1];
   private final double[] yOffset = new double[1];
   private Stage stage;
@@ -66,7 +66,7 @@ public class PomLifeLiteTimerController implements Initializable {
     stage.setScene(scene);
     stage.show();
   }
-  // Initialize
+  // Initialize.
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.pauseTimer.setCycleCount(Animation.INDEFINITE);
@@ -99,13 +99,13 @@ public class PomLifeLiteTimerController implements Initializable {
       this.getPauseTimer().stop();
     }
   }));
-  // Get methods so MediaPlayer and Timeline can stop themselves
+  // Get methods so MediaPlayer and Timeline can stop themselves.
   private MediaPlayer getNotificationPlayer() {
     return this.notificationPlayer;
   }
   private Timeline getRuntimer() { return this.runTimer; }
   private Timeline getPauseTimer() {return this.pauseTimer; }
-  // Button functionality methods
+  // Button functionality methods.
   @FXML
   protected void startTimer() throws IOException {
     if(this.pomTitleField.getText().equals("")) {
@@ -166,7 +166,7 @@ public class PomLifeLiteTimerController implements Initializable {
     this.pomTimer.setON();
     this.getPauseTimer().play();
   }
-  // Exit method for the custom X button
+  // Exit method for the custom X button.
   @FXML
   protected void stopProgramm() {
     if(this.currentEntry != null) {

@@ -50,7 +50,7 @@ public class PomLifeLiteDiaryController implements Initializable {
       stage.setY(event.getScreenY() - yOffset[0]);
     });
   }
-  // Method to switch from Diary to Timer Scene.
+  // Method to switch from Diary to Timer scene.
   @FXML
   public void switchToTimer(ActionEvent event)  {
     try {

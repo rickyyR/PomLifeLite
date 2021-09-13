@@ -67,7 +67,7 @@
    <top>
       <HBox alignment="TOP_RIGHT" fillHeight="false" minHeight="-Infinity" prefHeight="23.0" prefWidth="224.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="12.0" prefWidth="139.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Life Light">
+            <Label prefHeight="12.0" prefWidth="139.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Life Lite">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
