@@ -10,16 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="107.0" prefWidth="226.0" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="98.0" prefWidth="226.0" styleClass="root" stylesheets="@csspommi.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rickyyr.pomlifelite.PomLifeLiteTimerController">
    <left>
       <VBox alignment="TOP_RIGHT" prefHeight="70.0" prefWidth="52.0" styleClass="buttonPane" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="startPauseButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startTimer" prefHeight="35.0" prefWidth="46.0" styleClass="buttons" text="▶">
+            <Button fx:id="startPauseButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startTimer" prefHeight="35.0" prefWidth="46.0" styleClass="buttons" stylesheets="@csspommi.css" text="▶">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
             </Button>
-            <Button fx:id="diaryStopButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToDiary" prefHeight="25.0" prefWidth="46.0" styleClass="buttons" text="Diary">
+            <Button fx:id="diaryStopButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToDiary" prefHeight="25.0" prefWidth="46.0" styleClass="buttons" stylesheets="@csspommi.css" text="Diary">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>
@@ -30,19 +33,19 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="79.0" prefWidth="170.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="pomTitleField" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Enter Session Name" styleClass="pomoTitleField">
+            <TextField fx:id="pomTitleField" alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="150.0" promptText="Enter Session Name" styleClass="pomoTitleField" stylesheets="@csspommi.css">
                <VBox.margin>
                   <Insets right="5.0" />
                </VBox.margin>
             </TextField>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="167.0">
                <children>
-                  <Label fx:id="clock" styleClass="clock" text="25:00" textFill="WHITE" underline="true">
+                  <Label fx:id="clock" styleClass="clock" stylesheets="@csspommi.css" text="25:00" textFill="WHITE" underline="true">
                      <font>
                         <Font size="37.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pomCountDisplay" prefHeight="33.0" prefWidth="71.0" styleClass="clock" text="POM: 1">
+                  <Label fx:id="pomCountDisplay" prefHeight="33.0" prefWidth="71.0" styleClass="clock" stylesheets="@csspommi.css" text="POM: 1">
                      <font>
                         <Font name="Calisto MT" size="20.0" />
                      </font>
@@ -62,30 +65,17 @@
       <Point3D />
    </rotationAxis>
    <top>
-      <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="224.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" fillHeight="false" minHeight="-Infinity" prefHeight="23.0" prefWidth="224.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="10.0" prefWidth="139.0" styleClass="titleText" text="Pom Life Light">
+            <Label prefHeight="12.0" prefWidth="139.0" styleClass="titleText" stylesheets="@csspommi.css" text="Pom Life Lite">
                <font>
-                  <Font name="Calibri" size="17.0" />
+                  <Font name="Calibri" size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets right="49.0" />
+                  <Insets right="48.0" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#stopProgramm" prefHeight="23.0" prefWidth="30.0" styleClass="exitButton" text="x">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="2.0" left="5.0" />
-               </padding>
-            </Button>
+            <Button contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#stopProgramm" prefHeight="23.0" prefWidth="29.0" styleClass="exitButton" stylesheets="@csspommi.css" text="✖" />
          </children>
       </HBox>
    </top>

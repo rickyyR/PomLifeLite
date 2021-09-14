@@ -1,11 +1,10 @@
 package org.rickyyr.pomlifelite;
 
-
 public class PomTimer {
 
   private int pomCount = 1;
-  private int minutes = 0;
-  private int seconds = 3;
+  private int minutes = 25;
+  private int seconds = 0;
   private boolean isRunning = false;
   private int pauseMinutes = 5;
   private int pauseSeconds = 0;
@@ -33,14 +32,14 @@ public class PomTimer {
   }
 
   public void resetTimer() {
-    this.minutes = 0; // TODO change to right time
-    this.seconds = 3;
+    this.minutes = 25;
+    this.seconds = 0;
     if(this.pomCount >= 4) {
-      this.pauseMinutes = 0;
-      this.pauseSeconds = 6; // TODO
+      this.pauseMinutes = 15;
+      this.pauseSeconds = 0;
     } else {
-        this.pauseMinutes = 0; // TODO change to right times
-        this.pauseSeconds = 3;
+        this.pauseMinutes = 5;
+        this.pauseSeconds = 0;
       }
   }
 
@@ -61,9 +60,8 @@ public class PomTimer {
       this.pauseSeconds --;
     }
   }
-
-
-  public String pomCountTostring() { return "Pom: " +  String.valueOf(this.pomCount); }
+  // Getter methods
+  public String pomCountTostring() { return "Pom: " +  this.pomCount; }
   public String getRemaining() {
     return String.format("%02d", this.minutes) + ":" + String.format("%02d", this.seconds);
   }
@@ -77,6 +75,5 @@ public class PomTimer {
       return String.valueOf(this.seconds);
   }
   public boolean getIsRunning() { return  this.isRunning; }
-
 } // class
 

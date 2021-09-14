@@ -1,18 +1,13 @@
 package org.rickyyr.pomlifelite;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.util.Timer;
 
 public class PomLifeLiteMain extends Application {
   public static void main(String[] args) {
@@ -29,19 +24,13 @@ public class PomLifeLiteMain extends Application {
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root, Color.TRANSPARENT);
     // Mouse pressed/dragged event so one can move the window without windows decoration.
-    scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        xOffset[0] = event.getSceneX();
-        yOffset[0] = event.getSceneY();
-      }
+    scene.setOnMousePressed(event -> {
+      xOffset[0] = event.getSceneX();
+      yOffset[0] = event.getSceneY();
     });
-    scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        stage.setX(event.getScreenX() - xOffset[0]);
-        stage.setY(event.getScreenY() - yOffset[0]);
-      }
+    scene.setOnMouseDragged(event -> {
+      stage.setX(event.getScreenX() - xOffset[0]);
+      stage.setY(event.getScreenY() - yOffset[0]);
     });
     // Set up and show the stage.
     stage.setTitle("Pom Life Lite");

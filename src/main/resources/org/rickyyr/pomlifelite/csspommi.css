@@ -15,23 +15,26 @@
 .exitButton:hover {
     -fx-text-fill: BLACK;
 }
+.exitButton:pressed {
+    -fx-text-fill: #c32c2c;
+}
 
 .buttonPane {
     -fx-spacing: 5;
 }
 
 .clock {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.2, 0.0, 3.0);
     -fx-text-fill: #d0c9c0;
     -fx-font-family: Calibri;
 }
+
 .titleText {
   -fx-text-fill: BLACK;
 }
 
 .buttons {
     -fx-font-family: Calibri;
-    -fx-background-color: linear-gradient(#ffffff,#d0c9c0);
+    -fx-background-color: linear-gradient(#f2f2f2,#beb4a7);
     -fx-border-color: BLACK;
     -fx-background-radius: 6px;
     -fx-border-radius: 5px;
@@ -39,10 +42,10 @@
     -fx-background-insets: 0;
 }
 .buttons:hover {
-    -fx-background-color: linear-gradient(#f2f2f2,#beb4a7);
+    -fx-background-color: linear-gradient(#ffffff,#d0c9c0);
 }
 .buttons:pressed {
-    -fx-background-color: linear-gradient(#ffffff,#d0c9c0);
+    -fx-background-color: linear-gradient(#f2f2f2,#beb4a7);
 }
 
 .pomoTitleField {
@@ -52,9 +55,21 @@
     -fx-background-radius: 6;
     -fx-prompt-text-fill: BLACK;
     -fx-background-insets: 0;
+
 }
 .pomoTitleField:hover {
+    -fx-background-color: linear-gradient(#309c4d,#309c4d);
+}
+.pomoTitleField:pressed {
     -fx-background-color: linear-gradient(#309c4d,#09771d);
+}
+
+.pomoDiaryField {
+    -fx-border-color: BLACK;
+    -fx-background-color: linear-gradient(#309c4d,#09771d);
+    -fx-prompt-text-fill: BLACK;
+    -fx-background-insets: 0;
+
 }
 
 
