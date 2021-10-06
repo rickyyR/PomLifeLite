@@ -137,6 +137,12 @@ public class PomLifeLiteTimerController implements Initializable {
     this.startPauseButton.setOnAction(action -> pauseTimer());
   }
 
+  // Start/Pause - after a Pomodoro.
+  protected void startPauseCounter() {
+    this.pomTimer.setON();
+    this.getPauseTimer().play();
+  }
+
   // Diary/Stop Button - while Pomodoro NOT running.
   @FXML
   public void switchToDiary() throws IOException {
@@ -177,10 +183,6 @@ public class PomLifeLiteTimerController implements Initializable {
         e.printStackTrace();
       }
     });
-  }
-  protected void startPauseCounter() {
-    this.pomTimer.setON();
-    this.getPauseTimer().play();
   }
 
   // Custom Exit Button.

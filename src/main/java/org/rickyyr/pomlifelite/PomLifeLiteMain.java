@@ -19,10 +19,12 @@ public class PomLifeLiteMain extends Application {
     // Helper objects and variables.
     final double[] xOffset = new double[1];
     final double[] yOffset = new double[1];
+
     // Create and set up a scene with fxml.
     FXMLLoader fxmlLoader = new FXMLLoader(PomLifeLiteMain.class.getResource("pomLifeLite_fxml.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root, Color.TRANSPARENT);
+
     // Mouse pressed/dragged event to move the window without windows decoration.
     scene.setOnMousePressed(event -> {
       xOffset[0] = event.getSceneX();
@@ -32,6 +34,7 @@ public class PomLifeLiteMain extends Application {
       stage.setX(event.getScreenX() - xOffset[0]);
       stage.setY(event.getScreenY() - yOffset[0]);
     });
+
     // Set up and show the stage.
     stage.setTitle("Pom Life Lite");
     stage.initStyle(StageStyle.TRANSPARENT);
