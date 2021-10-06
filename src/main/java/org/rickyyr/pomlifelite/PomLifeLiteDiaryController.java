@@ -19,25 +19,29 @@ import java.util.ResourceBundle;
 
 public class PomLifeLiteDiaryController implements Initializable {
 
-  private JsonListHelper<PomDiaryEntry> jsonListHelper;
-  private ObservableList<PomDiaryEntry> observableList;
+  // FXML linked objects.
   @FXML
   protected Button backToTimerButton;
   @FXML
   protected Button deleteButton;
   @FXML
   protected TableView<PomDiaryEntry> tableView;
+
   // Objects for handling the Diary scene
+  private JsonListHelper<PomDiaryEntry> jsonListHelper;
+  private ObservableList<PomDiaryEntry> observableList;
   private final double[] xOffset = new double[1];
   private final double[] yOffset = new double[1];
   private Stage stage;
   private Parent root;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.jsonListHelper = new JsonListHelper<>("pomDiary.json");
     this.observableList =  FXCollections.observableArrayList(this.jsonListHelper.getListFromFile(PomDiaryEntry[].class));
     this.tableView.setItems(this.observableList);
   }
+
   // method to make the Timer moveable after switching scenes.
   private void setupScene(Scene scene, double[] xOffset, double[] yOffset) {
     scene.setFill(Color.TRANSPARENT);
@@ -50,7 +54,9 @@ public class PomLifeLiteDiaryController implements Initializable {
       stage.setY(event.getScreenY() - yOffset[0]);
     });
   }
-  // Method to switch from Diary to Timer scene.
+
+  // Button functionality methods.
+  // "SwitchToTimer" Button
   @FXML
   public void switchToTimer(ActionEvent event)  {
     try {
@@ -64,11 +70,15 @@ public class PomLifeLiteDiaryController implements Initializable {
     this.stage.setScene(scene);
     this.stage.show();
   }
+
+  // Delete Button
   @FXML
   public void deleteEntry() {
     this.observableList.remove(this.tableView.getSelectionModel().getSelectedItem());
     this.jsonListHelper.replaceListInFile(this.observableList);
   }
+
+  // Custom Exit Button
   @FXML
   protected void stopProgramm() {System.exit(0);}
 }

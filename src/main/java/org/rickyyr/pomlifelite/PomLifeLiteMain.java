@@ -23,7 +23,7 @@ public class PomLifeLiteMain extends Application {
     FXMLLoader fxmlLoader = new FXMLLoader(PomLifeLiteMain.class.getResource("pomLifeLite_fxml.fxml"));
     Parent root = fxmlLoader.load();
     Scene scene = new Scene(root, Color.TRANSPARENT);
-    // Mouse pressed/dragged event so one can move the window without windows decoration.
+    // Mouse pressed/dragged event to move the window without windows decoration.
     scene.setOnMousePressed(event -> {
       xOffset[0] = event.getSceneX();
       yOffset[0] = event.getSceneY();

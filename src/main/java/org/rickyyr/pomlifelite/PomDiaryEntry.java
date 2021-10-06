@@ -9,9 +9,9 @@ import java.util.Locale;
 
 public class PomDiaryEntry implements Serializable {
 
-  private String entryTitle = "Placeholder";
-  private String entryDate = "Placeholder";
-  private String entryStartTime = "Placeholder";
+  private String entryTitle = "";
+  private String entryDate = "";
+  private String entryStartTime = "";
   private String entryEndTime = "";
   private final transient DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
     .withLocale(Locale.getDefault())
@@ -25,6 +25,7 @@ public class PomDiaryEntry implements Serializable {
     this.entryTitle = entryTitle;
     this.setDateAndStartTime();
   }
+
   // Getters and Setters.
   public void setEntryTitle(String entryTitle) {
     this.entryTitle = entryTitle;
@@ -32,6 +33,7 @@ public class PomDiaryEntry implements Serializable {
   public String getEntryTitle() {
     return this.entryTitle;
   }
+
   public void setEntryDate() {
     String currentDateAndTime = formatter.format(Instant.now());
     String[] splitted = currentDateAndTime.split(",");
@@ -40,6 +42,7 @@ public class PomDiaryEntry implements Serializable {
   public String getEntryDate() {
     return this.entryDate;
   }
+
   public void setEntryStartTime() {
     String currentDateAndTime = formatter.format(Instant.now());
     String[] splitted = currentDateAndTime.split(",");
@@ -48,6 +51,7 @@ public class PomDiaryEntry implements Serializable {
   public String getEntryStartTime() {
     return this.entryStartTime;
   }
+
   public void setEntryEndTime() {
     String currentDateAndTime = formatter.format(Instant.now());
     String[] splitted = currentDateAndTime.split(",");
@@ -56,21 +60,19 @@ public class PomDiaryEntry implements Serializable {
   public String getEntryEndTime() {
     return this.entryEndTime;
   }
+
   public void setDateAndStartTime() {
     String currentDateAndTime = formatter.format(Instant.now());
     String[] splitted = currentDateAndTime.split(",");
     this.entryDate = splitted[0].replaceAll("\\s+", "");
     this.entryStartTime = splitted[1].replaceAll("\\s+", "");
   }
+
   public String getStartAndEndTime() {
     return this.entryStartTime + " - " + this.entryEndTime; }
+
   public DateTimeFormatter getFormatter() {
     return this.formatter;
   }
-
-
-
-
-
 
 }

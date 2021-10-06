@@ -23,6 +23,7 @@ public class PomTimer {
      this.seconds --;
      }
   }
+
   public void setON() {
      this.isRunning = true;
   }
@@ -60,20 +61,27 @@ public class PomTimer {
       this.pauseSeconds --;
     }
   }
+
   // Getter methods
-  public String pomCountTostring() { return "Pom: " +  this.pomCount; }
+  public String pomCountToString() { return "Pom: " +  this.pomCount; }
+
   public String getRemaining() {
     return String.format("%02d", this.minutes) + ":" + String.format("%02d", this.seconds);
   }
+
   public String getRemainingPauseTime() {
     return String.format("%02d", this.pauseMinutes) + ":" + String.format("%02d", this.pauseSeconds);
   }
+
   public String getMinutes() {
       return String.valueOf(this.minutes);
   }
+
   public String getSeconds() {
       return String.valueOf(this.seconds);
   }
+
   public boolean getIsRunning() { return  this.isRunning; }
-} // class
+
+}
 

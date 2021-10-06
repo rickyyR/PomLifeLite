@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PomLifeLiteTimerController implements Initializable {
+
   // FXML linked objects.
   @FXML
   protected Label pomCountDisplay;
@@ -31,20 +32,22 @@ public class PomLifeLiteTimerController implements Initializable {
   protected Button diaryStopButton;
   @FXML
   protected Label clock;
-  // Objects used in this Controller class.
+
+  // Objects only used in this Controller class.
   private final JsonListHelper<PomDiaryEntry> jsonListHelper = new JsonListHelper<>("pomDiary.json");
   private PomDiaryEntry currentEntry;
   private final Media notificationSound = new Media(getClass().getResource("pauseBell.wav").toURI().toString());
   private final MediaPlayer notificationPlayer = new MediaPlayer(this.notificationSound);
   private final PomTimer pomTimer = new PomTimer();
+
   // Objects for handling the Diary scene.
   private final double[] xOffset = new double[1];
   private final double[] yOffset = new double[1];
   private Stage stage;
 
-  public PomLifeLiteTimerController() throws URISyntaxException {
-  }
-  // method to make the diary moveable after swtiching scenes.
+  public PomLifeLiteTimerController() throws URISyntaxException {}
+
+  // Method to make the diary movable after switching scenes.
   private void setupScene(Scene scene, double[] xOffset, double[] yOffset) {
     scene.setFill(Color.TRANSPARENT);
     scene.setOnMousePressed(event -> {
@@ -56,16 +59,7 @@ public class PomLifeLiteTimerController implements Initializable {
       stage.setY(event.getScreenY() - yOffset[0]);
     });
   }
-  // Method to switch from Timer to Diary Scene.
-  @FXML
-  public void switchToDiary() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource(("pomLifeLiteDiary_fxml.fxml")));
-    stage = (Stage) this.diaryStopButton.getScene().getWindow();
-    Scene scene = new Scene(root);
-    this.setupScene(scene, this.xOffset, this.yOffset);
-    stage.setScene(scene);
-    stage.show();
-  }
+
   // Initialize.
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -73,7 +67,8 @@ public class PomLifeLiteTimerController implements Initializable {
     this.runTimer.setCycleCount(Animation.INDEFINITE);
     this.notificationPlayer.setOnEndOfMedia(() -> getNotificationPlayer().stop());
   }
-  // The main functionality method to run a COUNTDOWN.
+
+  // Method to run a Countdown.
   private final Timeline runTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
       this.pomTimer.countDown();
       this.clock.setText(this.pomTimer.getRemaining());
@@ -86,26 +81,30 @@ public class PomLifeLiteTimerController implements Initializable {
         this.getRuntimer().stop();
       }
   }));
-  // The main functionality method to run a PAUSE.
+
+  // Method to run a Pause.
   private final Timeline pauseTimer = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
     this.pomTimer.runPause();
     this.clock.setText(this.pomTimer.getRemainingPauseTime());
     if(!pomTimer.getIsRunning()) {
       this.notificationPlayer.play();
       this.clock.setText(this.pomTimer.getRemaining());
-      this.pomCountDisplay.setText(this.pomTimer.pomCountTostring());
+      this.pomCountDisplay.setText(this.pomTimer.pomCountToString());
       this.startPauseButton.setText("▶");
       this.startPauseButton.setOnAction(action -> resumeTimer());
       this.getPauseTimer().stop();
     }
   }));
-  // Get methods so MediaPlayer and Timeline can stop themselves.
+
+  // Getter methods so MediaPlayer and Timeline can stop themselves.
   private MediaPlayer getNotificationPlayer() {
     return this.notificationPlayer;
   }
   private Timeline getRuntimer() { return this.runTimer; }
   private Timeline getPauseTimer() {return this.pauseTimer; }
+
   // Button functionality methods.
+  // Start/Pause Button - while Pomodoro NOT running:
   @FXML
   protected void startTimer() throws IOException {
     if(this.pomTitleField.getText().equals("")) {
@@ -119,6 +118,8 @@ public class PomLifeLiteTimerController implements Initializable {
     this.diaryStopButton.setText("■");
     this.diaryStopButton.setOnAction(action -> stopTimer());
   }
+
+  // Start/Pause Button - while Pomodoro IS running.
   @FXML
   protected void pauseTimer() {
     this.runTimer.stop();
@@ -126,6 +127,8 @@ public class PomLifeLiteTimerController implements Initializable {
     this.startPauseButton.setText("▶");
     this.startPauseButton.setOnAction(action -> resumeTimer());
   }
+
+  // Start/Pause - after a pause.
   @FXML
   protected void resumeTimer() {
     this.pomTimer.setON();
@@ -133,6 +136,19 @@ public class PomLifeLiteTimerController implements Initializable {
     this.startPauseButton.setText("⏸");
     this.startPauseButton.setOnAction(action -> pauseTimer());
   }
+
+  // Diary/Stop Button - while Pomodoro NOT running.
+  @FXML
+  public void switchToDiary() throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource(("pomLifeLiteDiary_fxml.fxml")));
+    stage = (Stage) this.diaryStopButton.getScene().getWindow();
+    Scene scene = new Scene(root);
+    this.setupScene(scene, this.xOffset, this.yOffset);
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  // Diary/Stop Button - while Pomodoro IS running.
   @FXML
   protected void stopTimer() {
     this.currentEntry.setEntryEndTime();
@@ -144,7 +160,7 @@ public class PomLifeLiteTimerController implements Initializable {
     this.pomTimer.resetPomCount();
     this.clock.setText(this.pomTimer.getRemaining());
     this.pomTitleField.setText("");
-    this.pomCountDisplay.setText(this.pomTimer.pomCountTostring());
+    this.pomCountDisplay.setText(this.pomTimer.pomCountToString());
     this.diaryStopButton.setText("Diary");
     this.diaryStopButton.setOnAction(action -> {
       try {
@@ -166,7 +182,8 @@ public class PomLifeLiteTimerController implements Initializable {
     this.pomTimer.setON();
     this.getPauseTimer().play();
   }
-  // Exit method for the custom X button.
+
+  // Custom Exit Button.
   @FXML
   protected void stopProgramm() {
     if(this.currentEntry != null) {

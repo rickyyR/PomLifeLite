@@ -14,10 +14,10 @@ public class JsonListHelper <T> {
   private FileReader fileReader;
   private List<T> jsonList;
 
-  // Constructor
   public JsonListHelper(String filePath) {
     this.filePath = filePath;
   }
+
   // Read a list from a file into the jsonList variable.
   private void readListFromFile() {
     try {
@@ -41,6 +41,7 @@ public class JsonListHelper <T> {
       e.printStackTrace();
     }
   }
+
   // Write the list inside the jsonList variable to a file (Replacing old file!).
   private void writeListToFile() {
     try {
@@ -51,7 +52,8 @@ public class JsonListHelper <T> {
       e.printStackTrace();
     }
   }
-  // Read a existing list from a file, add a object to it and save the file.
+
+  // Read a existing list from a file, add an object to it and save the file.
   public void addObjectToList(T object) {
     this.readListFromFile();
     if(this.jsonList == null)  {
@@ -60,12 +62,14 @@ public class JsonListHelper <T> {
     this.jsonList.add(object);
     this.writeListToFile();
   }
+
   // Replace the list in a file with a list given as parameter.
   public void replaceListInFile(List<T> newList ) {
     this.jsonList = newList;
     this.writeListToFile();
   }
-  // This is for creating a observable list that does not bug with tableview rows.
+
+  // This is for creating an observable list that does not bug with tableview rows.
   public <X> List<X> getListFromFile(Class<X[]> objectClass) {
     try {
       this.fileReader = new FileReader(this.filePath);
